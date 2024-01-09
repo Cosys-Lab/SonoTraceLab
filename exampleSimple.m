@@ -67,7 +67,7 @@
     structSimulationParameters.ditherRaytracing = 1;
     structSimulationParameters.speedOfSound = 343;
 
-%% Plot the setup, to make sure normals are OK:
+%% Plot the setup, to make sure normals are OK: 
     nNormals = size( structSurface.surfaceNormals, 1 );
     normalSpacing = round( nNormals / 1000);
     idxNormalsPlot = 1 : normalSpacing : nNormals;
