@@ -44,7 +44,7 @@
     
     % Combine it all into the sensor
     structSensor = struct();
-    structSensor.position = [ 1 0 0];
+    structSensor.position = [ 1 0 0]';
     structSensor.orientation = [ 0 0 180];
     structSensor.coordsEmitter = [ 0 0 -0.01];
     structSensor.coordsReceivers = coordsReceivers;
