@@ -3,6 +3,7 @@ function [ structSimulationResult ] = calculateImpulseResponse( structSensor, st
     % This function calculates the impulse response for a certain
     % raytracing setup. It is the main function to call
   
+
     % Transform the sensor to it's position and orientation
     micsTransformed = ( calcBeamRotation( structSensor.orientation,  structSensor.coordsReceivers' ) + structSensor.position(:) );
     emitterTransformed = ( calcBeamRotation( structSensor.orientation,  structSensor.coordsEmitter' ) + structSensor.position(:) )';

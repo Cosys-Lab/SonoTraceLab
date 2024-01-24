@@ -7,6 +7,9 @@ function [ structSimulationResult ] = calculateImpulseResponseFast( structSensor
     % intersection algorithm that works well when many directions are
     % calculated at once instead of one by one. 
   
+    structSensor.orientation = structSensor.orientation(:);
+
+
     % Do the raytracing part:
     [ subresultRaytracing ] = calculateImpulseResponeRaytracing(structSensor, structSurface, structSimulationParameters);
 
