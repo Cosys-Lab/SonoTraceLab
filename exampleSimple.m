@@ -12,18 +12,19 @@
     structMeshPreparation.orientation = [ 0 0 0];
     structMeshPreparation.position = [ 0 0 0];
     structMeshPreparation.vertexScaling = 1/1000;
-    structMeshPreparation.FLIPNORMALS = 0;
-    structMeshPreparation.vecFreqSim = linspace( 20e3, 150e3, nFreqsSim ); 
-    structMeshPreparation.fileNameMesh = "Data/Models/leaf2_dragonfly2.stl";
+    structMeshPreparation.FLIPNORMALS = 1;
+    structMeshPreparation.vecFreqSim = linspace( 20e3, 85e3, nFreqsSim ); 
+    % structMeshPreparation.fileNameMesh = "Data/Models/leaf2_dragonfly2.stl";
+    structMeshPreparation.fileNameMesh = "Data/Models/wall_doos.stl";
 
-    structMeshPreparation.BRDFTransitionPosition = 0.5;
+    structMeshPreparation.BRDFTransitionPosition = 0.4;
     structMeshPreparation.BRDFTransitionSlope = 2;
     structMeshPreparation.BRDFExponentSpecular = linspace( 8,5,nFreqsSim);
     structMeshPreparation.BRDFExponentDiffractive = linspace( 70,70,nFreqsSim);
 
     structMeshPreparation.materialStrengthSpecular = 10*linspace( 1,0.8,nFreqsSim);
     structMeshPreparation.materialStrengthDiffractive = 0.05*linspace( 0.5,1,nFreqsSim);
-    structMeshPreparation.materialSTransitionPosition = .5;
+    structMeshPreparation.materialSTransitionPosition = structMeshPreparation.BRDFTransitionPosition;
     structMeshPreparation.materialSTransitionSlope = 2;
     
     structMeshPreparation.precomputeCurvature = 1;
@@ -43,8 +44,8 @@
     
     % Combine it all into the sensor
     structSensor = struct();
-    structSensor.position = [ .08 0 -0.08];
-    structSensor.orientation = [ 0 -40 180]';
+    structSensor.position = [ 1 0 0];
+    structSensor.orientation = [ 0 0 180]';
     structSensor.coordsEmitter = [ 0 0 -0.01];
     structSensor.coordsReceivers = coordsReceivers;
     structSensor.nMics = size( structSensor.coordsReceivers, 1 );
@@ -52,11 +53,11 @@
     % Struct for the parameters of the simulation
     structSimulationParameters = struct();
     structSimulationParameters.doPlot = 0;
-    structSimulationParameters.numSamplesImpresp = 40000;
-    structSimulationParameters.sampleRateImpresp = 1e6;
-    structSimulationParameters.limitsAzimuth = [-40 40];
-    structSimulationParameters.limitsElevation = [-40 40];
-    structSimulationParameters.numberOfDirections = 150000;
+    structSimulationParameters.numSamplesImpresp = 16000;
+    structSimulationParameters.sampleRateImpresp = 450e3;
+    structSimulationParameters.limitsAzimuth = [-20 20];
+    structSimulationParameters.limitsElevation = [-20 20];
+    structSimulationParameters.numberOfDirections = 50000;
     structSimulationParameters.numberOfDirectionsPerCall = 150000;
     structSimulationParameters.vecFreqSim = structMeshPreparation.vecFreqSim;
     structSimulationParameters.numSamplesIRFilter = 256;
@@ -170,7 +171,7 @@
                 hp.BackFaceLighting = 'unlit';
                 
             
-            numSamplesPlotIR = 20000;
+            numSamplesPlotIR = 15000;
             IRLeft =  structSimulationResult.impulseResponse(1:numSamplesPlotIR,1);
             IRRight =  structSimulationResult.impulseResponse(1:numSamplesPlotIR,2);
             timeVec = (1:numSamplesPlotIR)/structSimulationParameters.sampleRateImpresp;
