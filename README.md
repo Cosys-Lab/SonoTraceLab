@@ -32,8 +32,8 @@ Two examples are provided with ['exampleSimple.m'](exampleSimple.m) and ['exampl
 ### Mex files 
 There are some accelerated functions that are implemented in C++/CUDA and compiled to a Mex file. 
 Depending on your operating system these may need to be compiled from source. This relates to:
-- [patch_normals_double.c](SourceCode/patchnormals_double.c), can be compiled with `mex patchnormals_double.c`
-- [mollertrumbore.cu](SourceCode/mollertrumbore.cu), can be compiled with `mexcuda mollertrumbore.cu`
+- [patch_normals_double.c](SourceCode/SupportCode/patchnormals_double.c), can be compiled with `mex patchnormals_double.c`
+- [mollertrumbore.cu](SourceCode/SupportCode/mollertrumbore.cu), can be compiled with `mexcuda mollertrumbore.cu`
 
 ## License
 This library is provided as is, will not be actively updated and comes without warranty or support.
