@@ -1,10 +1,11 @@
 
-%% Init:
+%% Init
 
     clear
     close all
     clc
     addpath(genpath('../../SourceCode'))
+
 %%   Load the surface and prepare the surface normals
     
     nFreqsSim = 16;
@@ -14,7 +15,7 @@
     structMeshPreparation.vertexScaling = 1/1000 * 1.5;
     structMeshPreparation.FLIPNORMALS = 1;
     structMeshPreparation.vecFreqSim = linspace( 20e3, 200e3, nFreqsSim ); 
-    structMeshPreparation.fileNameMesh = "Data/Models/sphere_60mm_sharp_nicemesh.stl";
+    structMeshPreparation.fileNameMesh = "Data/Models/sphere.stl";
 
     structMeshPreparation.BRDFTransitionPosition = 0.2;
     structMeshPreparation.BRDFTransitionSlope = 1;
@@ -27,6 +28,7 @@
     structMeshPreparation.precomputeCurvature = 1;
     
    structSurface = prepareMeshSurface( structMeshPreparation, 1 );
+
 %% Setup the structs for processing
 
     arraySingleEar =  generateCircularArray( 0.0015, 0.005, 1);
@@ -59,7 +61,7 @@
     structSimulationParameters.ditherRaytracing = 1;
     structSimulationParameters.speedOfSound = 1500;
 
-    %% Now calculate the whole setup:
+    %% Now calculate the whole setup
 
     rotationObjectAzimuth = -90:2:90;
     structSensor.position = [ 0.3 0 0];
@@ -72,9 +74,7 @@
       
         structMeshPreparation.orientation = [ 0 0 rotationObjectAzimuth(cntPoseObject) ];
         structSurface = prepareMeshSurface( structMeshPreparation, 0 );
-        % tic
         structSimulationResult = calculateImpulseResponseFast( structSensor, structSurface, structSimulationParameters );
-        % toc
 
         structSimulatorOutput = struct();
         structSimulatorOutput.impulseResponse = structSimulationResult.impulseResponse;
@@ -88,7 +88,4 @@
 
 
         count( PB);
-
-        % zlim( [-1.5 1.5])
-
     end

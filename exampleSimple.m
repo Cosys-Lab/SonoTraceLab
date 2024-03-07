@@ -1,10 +1,11 @@
 
-%% Init:
+%% Init
 
     clear
     close all
     clc
     addpath(genpath('SourceCode'))
+
 %%   Load the surface and prepare the surface normals
     
     nFreqsSim = 14;
@@ -14,8 +15,7 @@
     structMeshPreparation.vertexScaling = 1/1000;
     structMeshPreparation.FLIPNORMALS = 1;
     structMeshPreparation.vecFreqSim = linspace( 20e3, 85e3, nFreqsSim ); 
-    % structMeshPreparation.fileNameMesh = "Data/Models/leaf2_dragonfly2.stl";
-    structMeshPreparation.fileNameMesh = "Data/Models/wall_doos.stl";
+    structMeshPreparation.fileNameMesh = "Data/Models/wall.stl";
 
     structMeshPreparation.BRDFTransitionPosition = 0.4;
     structMeshPreparation.BRDFTransitionSlope = 2;
@@ -29,7 +29,8 @@
     
     structMeshPreparation.precomputeCurvature = 1;
     
-   structSurface = prepareMeshSurface( structMeshPreparation, 1 );
+    structSurface = prepareMeshSurface( structMeshPreparation, 1 );
+
 %% Setup the structs for processing
 
     % Make the receiver arrays
@@ -68,14 +69,14 @@
     structSimulationParameters.ditherRaytracing = 1;
     structSimulationParameters.speedOfSound = 343;
 
-%% Plot the setup, to make sure normals are OK: 
+%% Plot the setup, to make sure normals are OK
+
     nNormals = size( structSurface.surfaceNormals, 1 );
     normalSpacing = round( nNormals / 1000);
     idxNormalsPlot = 1 : normalSpacing : nNormals;
     figure(1212)       
         clf
         hp = patch('faces', structSurface.surfaceFaces, 'vertices', structSurface.surfaceVertices, 'FaceColor', [ 1 0 0], 'EdgeAlpha', 0.4); 
-        % axis equal;
         xlabel( 'X-Axis' )
         ylabel( 'Y-Axis' )
         zlabel( 'Z-Axis' )
@@ -103,14 +104,13 @@
     structSimulationResult = calculateImpulseResponseFast( structSensor, structSurface, structSimulationParameters );
     toc
 
-%% Process the impulseresponses    
-    sigEmit = fm_sweep( 150e3, 40e3, 450e3, 0.4, 1, 10 );
+%% Process the impulseresponses  
 
+    sigEmit = fm_sweep( 150e3, 40e3, 450e3, 0.4, 1, 10 );
     dataMics = zeros( size( structSimulationResult.impulseResponse ) );
     for cntMic = 1 : size(dataMics,2)
         dataMics( :, cntMic ) = conv( structSimulationResult.impulseResponse(:, cntMic), sigEmit, 'same' );
     end
-
 
 %% Plot the final result, including the reflection points.
 

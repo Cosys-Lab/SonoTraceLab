@@ -1,1 +1,5 @@
 *.mat
+*.asv
+/.idea/*
+/.vscode/*
+/DataCalculated/*
