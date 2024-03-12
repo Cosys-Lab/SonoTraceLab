@@ -7,14 +7,14 @@ Youtube Video: https://www.youtube.com/watch?v=_h9p5dmUeeI
 ## Publications
 We kindly ask to cite our paper if you find this library useful:
 ```
-@inproceedings{sonotracelab2024steckel,
-  author={Jansen, Wouter and Steckel, Jan},
-  title={SonoTraceLab - A Raytracing-Based Acoustic Modelling System for Simulating Echolocation Behavior of Bats}, 
-  year={2024},
-  volume={},
-  number={},
-  pages={},
-  doi={}}
+@misc{jansen2024sonotracelab,
+      title={SonoTraceLab - A Raytracing-Based Acoustic Modelling System for Simulating Echolocation Behavior of Bats}, 
+      author={Wouter Jansen and Jan Steckel},
+      year={2024},
+      eprint={2403.06847},
+      archivePrefix={arXiv},
+      primaryClass={eess.AS}
+}
 ```
 
 ## Usage
