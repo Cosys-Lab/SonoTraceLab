@@ -1,6 +1,8 @@
 # SonoTraceLab
  
-A raytracing-based simulation framework for modelling of active echo-based sensing systems.
+A raytracing-based simulation framework for modelling of active echo-based sensing systems. 
+Paper: https://arxiv.org/pdf/2403.06847.pdf
+Youtube Video: https://www.youtube.com/watch?v=_h9p5dmUeeI
 
 ## Publications
 We kindly ask to cite our paper if you find this library useful:
